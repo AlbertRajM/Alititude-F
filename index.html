@@ -576,6 +576,19 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(56px + env(safe-
   .meta{gap:4px}
   .meta dt{letter-spacing:.06em;font-size:7px;white-space:nowrap}
 }
+
+/* ===== PHONE: portrait airplane window + lighter effects ===== */
+@media (max-aspect-ratio:1/1){
+  .wframe{object-position:50% 41.7%;transform-origin:50% 41.7%}
+  .cabin .rim{background:radial-gradient(62% 40% at 50% 41.7%,transparent 60%,rgba(255,190,120,.08) 75%,transparent 92%);mix-blend-mode:normal}
+}
+@media (max-width:900px){
+  /* blur behind moving video is very expensive on phones: use a solid tint instead */
+  .nav.solid{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(5,11,26,.94)}
+  .tracker{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(5,11,26,.92)}
+  .hangar-info{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(5,11,26,.82)}
+  .hs{backdrop-filter:none;-webkit-backdrop-filter:none}
+}
 </style>
 
 <div class="ptrans" id="ptrans" aria-hidden="true"><div class="pt-panel" id="ptPanel"></div>
@@ -610,7 +623,7 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(56px + env(safe-
     <div class="vig"></div>
     <div class="bars"></div>
     <div class="cabin" id="cabin" aria-hidden="true">
-      <img class="wframe" id="wframe" src="img/window-frame.png" alt=""><i class="rim"></i>
+      <picture><source media="(max-aspect-ratio: 1/1)" srcset="img/window-frame-portrait.png"><img class="wframe" id="wframe" src="img/window-frame.png" alt="" decoding="async"></picture><i class="rim"></i>
     </div>
 
     <div class="hud" id="hud" aria-hidden="true">
@@ -942,6 +955,7 @@ footer{border-top:1px solid var(--line);padding-block:56px calc(56px + env(safe-
 const FONTDATA={"font":{"glyphs":{"A":{"ha":1601,"x_min":45,"x_max":1556,"o":"m 755 1529 l 885 1529 l 1402 39 l 1556 39 l 1556 0 l 867 0 l 867 39 l 1042 39 l 904 465 l 423 465 l 274 39 l 486 39 l 486 0 l 45 0 l 45 39 l 229 39 l 755 1529 m 437 504 l 891 504 l 673 1178 l 437 504"},"L":{"ha":1263,"x_min":45,"x_max":1210,"o":"m 1210 0 l 45 0 l 45 39 l 226 39 l 226 1461 l 45 1461 l 45 1500 l 716 1500 l 716 1461 l 537 1461 l 537 39 l 733 39 q 921 67.5 843 39 q 1050.5 149.5 999 96 q 1130.5 279 1102 203 q 1170 450 1159 355 l 1170 450 l 1210 450 l 1210 0"},"T":{"ha":1398,"x_min":45,"x_max":1353,"o":"m 1075 0 l 324 0 l 324 39 l 544 39 l 544 1461 l 423 1461 q 284.5 1428 343 1461 q 186 1335.5 226 1395 q 121.5 1195.5 146 1276 q 86 1020 97 1115 l 86 1020 l 45 1020 l 45 1500 l 1353 1500 l 1353 1020 l 1314 1020 q 1278.5 1195.5 1303 1115 q 1214 1335.5 1254 1276 q 1115.5 1428 1174 1395 q 977 1461 1057 1461 l 977 1461 l 855 1461 l 855 39 l 1075 39 l 1075 0"},"I":{"ha":861,"x_min":45,"x_max":816,"o":"m 816 0 l 45 0 l 45 39 l 266 39 l 266 1461 l 45 1461 l 45 1500 l 816 1500 l 816 1461 l 576 1461 l 576 39 l 816 39 l 816 0"},"U":{"ha":1480,"x_min":42,"x_max":1431,"o":"m 1023 1500 l 1431 1500 l 1431 1461 l 1243 1461 l 1243 460 q 1125 92 1243 213 q 763 -29 1007 -29 l 763 -29 q 351.5 86 481 -29 q 222 460 222 201 l 222 460 l 222 1461 l 42 1461 l 42 1500 l 733 1500 l 733 1461 l 533 1461 l 533 480 q 545 298 533 381 q 590 154 557 215 q 683.5 59.5 623 93 q 840 26 744 26 l 840 26 q 1031 69 949 26 q 1158.5 207 1113 112 q 1204 460 1204 302 l 1204 460 l 1204 1461 l 1023 1461 l 1023 1500"},"D":{"ha":1540,"x_min":45,"x_max":1446,"o":"m 45 1500 l 686 1500 q 1094 1405.5 924 1500 q 1355 1142 1264 1311 q 1446 750 1446 973 l 1446 750 q 1392 444.5 1446 582 q 1237.5 207.5 1338 307 q 997 54 1137 108 q 686 0 857 0 l 686 0 l 45 0 l 45 39 l 226 39 l 226 1461 l 45 1461 l 45 1500 m 537 1461 l 537 39 l 686 39 q 880.5 94 802 39 q 1006.5 246.5 959 149 q 1075 473 1054 344 q 1096 750 1096 602 l 1096 750 q 1072 1027 1096 898 q 999 1253.5 1048 1156 q 872.5 1406 950 1351 q 686 1461 795 1461 l 686 1461 l 537 1461"},"E":{"ha":1288,"x_min":45,"x_max":1215,"o":"m 1215 0 l 45 0 l 45 39 l 226 39 l 226 1461 l 45 1461 l 45 1500 l 1195 1500 l 1195 1090 l 1156 1090 q 1091.5 1281 1141 1197 q 958.5 1413 1042 1365 q 758 1461 875 1461 l 758 1461 l 537 1461 l 537 795 l 598 795 q 706 822.5 655 795 q 793.5 899.5 757 850 q 845 1016 830 949 l 845 1016 l 885 1016 l 885 526 l 845 526 q 793.5 645 830 593 q 706 727 757 697 q 598 757 655 757 l 598 757 l 537 757 l 537 39 l 738 39 q 966.5 89 875 39 q 1109.5 231 1058 139 q 1176 450 1161 323 l 1176 450 l 1215 450 l 1215 0"}},"familyName":"Bodoni Moda","ascender":2250,"descender":-800,"resolution":2000,"underlineThickness":50,"underlinePosition":-100,"boundingBox":{"xMin":0,"yMin":-300,"xMax":1000,"yMax":1000},"cssFontWeight":"bold","cssFontStyle":"normal","original_font_information":{}},"pos":[0,1601,2864,4262,5123,6521,8001,9541],"width":10829,"capH":1500};
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const small=Math.min(innerWidth,innerHeight)<700||/Mobi|Android/i.test(navigator.userAgent);
+const DPRMAX=small?1.25:2;
 const fine=matchMedia('(pointer:fine)').matches;
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 const lerp=(a,b,t)=>a+(b-a)*t;
@@ -1031,14 +1045,14 @@ let heroP=0,heroVel=0,heroSnap=false;
   const sprite=(()=>{const c=document.createElement('canvas');c.width=512;c.height=256;const g=c.getContext('2d');const R=rng(7);
     for(let i=0;i<70;i++){const x=60+R()*392,y=128+(R()-.5)*90,r=30+R()*70;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,248,240,.22)');gr.addColorStop(1,'rgba(255,248,240,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}return c;})();
   const W=[];const R=rng(31);for(let i=0;i<14;i++)W.push({x:R()*1.4-.2,y:R(),z:.3+R()*1.2,s:.6+R()*1.2});
-  function wsize(){const d=Math.min(devicePixelRatio,1.5);WW=wc.width=Math.round(wc.clientWidth*d);WH=wc.height=Math.round(wc.clientHeight*d);}
+  function wsize(){const d=Math.min(devicePixelRatio,small?1:1.5);WW=wc.width=Math.round(wc.clientWidth*d);WH=wc.height=Math.round(wc.clientHeight*d);}
   addEventListener('resize',wsize);wsize();
 
   // ---- 3D gold wordmark (real Bodoni Moda outlines) ----
   let T=null;
   if(false){try{T=(function(){
     const canvas=$('titleCanvas');
-    const Rr=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});Rr.setPixelRatio(Math.min(devicePixelRatio,2));
+    const Rr=new THREE.WebGLRenderer({canvas,antialias:!small,alpha:true});Rr.setPixelRatio(Math.min(devicePixelRatio,DPRMAX));
     const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,.1,100);cam.position.set(0,0,10);
     const mc=document.createElement('canvas');mc.width=mc.height=256;const mx=mc.getContext('2d');
     let gr=mx.createRadialGradient(92,76,4,128,128,140);gr.addColorStop(0,'#fff8e4');gr.addColorStop(.16,'#f6d99e');gr.addColorStop(.42,'#cf9d52');gr.addColorStop(.72,'#6e4818');gr.addColorStop(1,'#241606');
@@ -1109,7 +1123,7 @@ let heroP=0,heroVel=0,heroSnap=false;
     const canvas=$('outPlane'),hf=$('heroFrame'),hfl=$('hfLabel');let R=null,S,C,MS,MC,mg,plane=null,mats=[],loading=false;
     const behind=hasGL?new THREE.Plane(new THREE.Vector3(0,0,-1),0):null,front=hasGL?new THREE.Plane(new THREE.Vector3(0,0,1),0):null;
     function load(){if(loading||!hasGL||!THREE.GLTFLoader)return;loading=true;
-      R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,stencil:true,powerPreference:'high-performance'});R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputEncoding=THREE.sRGBEncoding;R.autoClear=false;
+      R=new THREE.WebGLRenderer({canvas,antialias:!small,alpha:true,stencil:true,powerPreference:'high-performance'});R.setPixelRatio(Math.min(devicePixelRatio,DPRMAX));R.outputEncoding=THREE.sRGBEncoding;R.autoClear=false;
       S=new THREE.Scene();C=new THREE.PerspectiveCamera(30,1,.3,800);C.position.set(0,0,60);
       MS=new THREE.Scene();MC=new THREE.OrthographicCamera(-1,1,1,-1,-1,1);mg=new THREE.BufferGeometry();mg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(18),3));
       const mm=new THREE.Mesh(mg,new THREE.MeshBasicMaterial({side:THREE.DoubleSide,colorWrite:false,depthWrite:false,depthTest:false,stencilWrite:true,stencilRef:1,stencilFunc:THREE.AlwaysStencilFunc,stencilZPass:THREE.ReplaceStencilOp,stencilFail:THREE.ReplaceStencilOp,stencilZFail:THREE.ReplaceStencilOp}));mm.frustumCulled=false;MS.add(mm);
@@ -1250,7 +1264,7 @@ let heroP=0,heroVel=0,heroSnap=false;
   if(!hasGL||!THREE.GLTFLoader){$('hangarLoad').querySelector('span').textContent='3D view needs WebGL';return;}
 
   const canvas=$('hangarCanvas');
-  const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputEncoding=THREE.sRGBEncoding;
+  const R=new THREE.WebGLRenderer({canvas,antialias:!small,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,DPRMAX));R.outputEncoding=THREE.sRGBEncoding;
   const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(28,1,.5,400);
   // soft contact shadow
   const sc=document.createElement('canvas');sc.width=sc.height=256;const sx=sc.getContext('2d');const g=sx.createRadialGradient(128,128,0,128,128,128);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(.6,'rgba(0,0,0,.18)');g.addColorStop(1,'rgba(0,0,0,0)');sx.fillStyle=g;sx.fillRect(0,0,256,256);
@@ -1307,7 +1321,7 @@ let heroP=0,heroVel=0,heroSnap=false;
     for(let i=0;i<60;i++){const x=100+R()*312,y=170-R()*60,r=20+R()*60;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.5)');gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,r*2,r*2);}return c;})();
   const CL=[];const Rc=rng(4);for(let i=0;i<9;i++)CL.push({x:Rc(),y:.45+Rc()*.6,s:.5+Rc()*1.1,v:.004+Rc()*.01,d:.3+Rc()*.9});
   let W=0,H=0,dpr=1;
-  function size(){dpr=Math.min(devicePixelRatio,2);W=stage.clientWidth;H=stage.clientHeight;[tc,cc].forEach(c=>{c.width=W*dpr;c.height=H*dpr;});
+  function size(){dpr=Math.min(devicePixelRatio,DPRMAX);W=stage.clientWidth;H=stage.clientHeight;[tc,cc].forEach(c=>{c.width=W*dpr;c.height=H*dpr;});
     const need=W<900?620:700,sc=Math.min(1,W<900?(W-24)/need:Math.min((W*.56)/need,(H*.74)/600));phones.style.setProperty('--sc',sc.toFixed(3));}
   addEventListener('resize',size);size();
   let vis=false;new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis)loadPlane();},{rootMargin:'300px'}).observe(sec);
@@ -1318,7 +1332,7 @@ let heroP=0,heroVel=0,heroSnap=false;
   let R3=null,S3,C3,plane=null,mats=[],loading=false,MS,MC,maskGeo;
   const behind=hasGL?new THREE.Plane(new THREE.Vector3(0,0,-1),0):null,front=hasGL?new THREE.Plane(new THREE.Vector3(0,0,1),0):null;
   function loadPlane(){if(loading||!hasGL||!THREE.GLTFLoader)return;loading=true;
-    const canvas=$('appPlane');R3=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,stencil:true});R3.setPixelRatio(Math.min(devicePixelRatio,2));R3.outputEncoding=THREE.sRGBEncoding;R3.autoClear=false;
+    const canvas=$('appPlane');R3=new THREE.WebGLRenderer({canvas,antialias:!small,alpha:true,stencil:true});R3.setPixelRatio(Math.min(devicePixelRatio,DPRMAX));R3.outputEncoding=THREE.sRGBEncoding;R3.autoClear=false;
     S3=new THREE.Scene();C3=new THREE.PerspectiveCamera(30,1,.5,600);C3.position.set(0,0,60);
     // stencil mask = the card the plane flies out of (or into)
     MS=new THREE.Scene();MC=new THREE.OrthographicCamera(-1,1,1,-1,-1,1);maskGeo=new THREE.BufferGeometry();maskGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(18),3));
@@ -1494,7 +1508,7 @@ function inPoly(x,y,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;
 if(hasGL){(function(){
   const ll2v=(lat,lon,r)=>{const phi=(90-lat)*Math.PI/180,th=(lon+180)*Math.PI/180;return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(th),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(th));};
   const box=$('globeBox'),canvas=$('globeCanvas');
-  const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+  const R=new THREE.WebGLRenderer({canvas,antialias:!small,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,DPRMAX));
   const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(35,1,.1,100);cam.position.set(0,0,4.2);
   S.add(new THREE.HemisphereLight(0xffffff,0x334466,1));const dl=new THREE.DirectionalLight(0xfff1d6,.9);dl.position.set(-2,3,4);S.add(dl);
   const G=new THREE.Group();S.add(G);
